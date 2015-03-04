@@ -19,7 +19,7 @@ public class PostReceiveHook : IHttpHandler {
         //    Deploy();
         //}
 
-        if (  req["token"] == ConfigurationManager.AppSettings["token"]) {
+        if (  req.QueryString["token"] == ConfigurationManager.AppSettings["token"]) {
             Deploy();
         }
         context.Response.ContentType = "text/plain";
