@@ -14,12 +14,12 @@ public class PostReceiveHook : IHttpHandler {
     public void ProcessRequest(HttpContext context) {
         Log = new Logger(context.Server.MapPath("~/log1.txt"));
         var req = context.Request;
-        Log.Log("reqest received");
+        Log.Log("request received");
         //if (req.HttpMethod.ToLower() == "post" && !string.IsNullOrWhiteSpace(req.Form["payload"]) && req.QueryString["token"] == ConfigurationManager.AppSettings["token"])  {
         //    Deploy();
         //}
 
-        if (  req.QueryString["token"] == ConfigurationManager.AppSettings["token"]) {
+        if (  req["token"] == ConfigurationManager.AppSettings["token"]) {
             Deploy();
         }
         context.Response.ContentType = "text/plain";
